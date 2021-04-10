@@ -14,12 +14,16 @@ public class ListagemRestaurantesMain {
 		
 		RestauranteClient restauranteCliente = new RestauranteClient(restTemplate, "http://api.algafood.local:8080");
 		
-		restauranteCliente.listar().stream()
-			.forEach(restaurante -> System.out.println(restaurante));
+//		restauranteCliente.listar().stream()
+//			.forEach(restaurante -> System.out.println(restaurante));
+		
+		System.out.println(restauranteCliente.adicionar());
 		
 		} catch (ClientApiException e) {
 			if (e.getProblem() != null) {
 				System.out.println(e.getProblem().getUserMessage());
+				
+				e.getProblem().getFields().forEach(field -> System.out.println(field.getUserMessage()));		
 			} else {
 				System.out.println("Erro Desconhecido");
 				e.printStackTrace();
